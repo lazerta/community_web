@@ -15,4 +15,6 @@ public class PageResult<T> {
     public static <T>PageResult<T> create(long total, List<T> rows) {
         return new PageResult<>(total, rows);
     }
+
+
 }

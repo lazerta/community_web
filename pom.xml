@@ -10,6 +10,8 @@
     <modules>
         <module>community_common</module>
         <module>community_base</module>
+        <module>community_recruit</module>
+        <module>community_QustionAndAnswer</module>
     </modules>
     <packaging>pom</packaging>
     <name>community_parent</name>

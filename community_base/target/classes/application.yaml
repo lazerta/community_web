@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: community-base
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.29.178:3306/community_base
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    database: mysql
+

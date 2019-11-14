@@ -1,0 +1,15 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: community-recruit
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.29.178:3306/community_recruit
+    username: root
+    password: root
+  jpa:
+    database: mysql
+    show-sql: true
+

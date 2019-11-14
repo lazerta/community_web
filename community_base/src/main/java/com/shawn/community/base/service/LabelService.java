@@ -1,33 +1,30 @@
 package com.shawn.community.base.service;
 
-import com.querydsl.jpa.impl.JPAQuery;
+
 import com.shawn.community.base.entity.Label;
 import com.shawn.community.base.repository.LabelRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import util.IdWorker;
+import util.StringUtil;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.Arrays;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @AllArgsConstructor
 @Service
+@Transactional(rollbackOn = Exception.class)
 public class LabelService {
     private LabelRepository repository;
     private IdWorker idWorker;
-    @PersistenceContext
-    private EntityManager manager;
+
+
+    private ExampleMatcher getSearchCriteria(Label label) {
+        StringUtil.emptyToNull(label);
+        return ExampleMatcher.matchingAll().withIgnoreCase()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+    }
 
     public List<Label> findAll() {
         return repository.findAll();
@@ -51,18 +48,16 @@ public class LabelService {
     }
 
     public List<Label> findSearch(Label label) {
-        String name = label.getLabelName();
-        String state = label.getState();
-        if (name == null || name.isBlank()) {
-            label.setLabelName(null);
-        }
-        if (state == null || state.isBlank()) {
-            label.setState(null);
-        }
-        ExampleMatcher criteria = ExampleMatcher.matchingAll().withIgnoreCase()
-                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        ExampleMatcher criteria = getSearchCriteria(label);
 
-        return repository.findAll(Example.of(label,criteria));
+        return repository.findAll(Example.of(label, criteria));
 
+    }
+
+
+    public Page<Label> findSearchWithPage(Label label, int page, int size) {
+        ExampleMatcher criteria = getSearchCriteria(label);
+        Pageable pageable = PageRequest.of(page-1, size);
+        return repository.findAll(Example.of(label, criteria), pageable);
     }
 }
