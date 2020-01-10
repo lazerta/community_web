@@ -1,0 +1,38 @@
+
+server:
+  port: 9011
+
+jwt:
+  config:
+    key: itcast
+    duration: 1
+
+spring:
+  application:
+    name: community-manager
+  main:
+    allow-bean-definition-overriding: true
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.29.125:6868/eureka
+  instance:
+    prefer-ip-address: true
+
+
+zuul:
+  routes:
+    community-base:
+                   path: /base/**
+                   serviceId: community-base
+
+    community-user:
+      path: /user/**
+      serviceId: community-user
+
+    community-qa:
+      path: /qa/**
+      serviceId: community-qa
+

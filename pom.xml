@@ -12,6 +12,18 @@
         <module>community_base</module>
         <module>community_recruit</module>
         <module>community_QustionAndAnswer</module>
+        <module>community_article</module>
+        <module>community_meetup</module>
+        <module>community_comment</module>
+        <module>community_search</module>
+        <module>community_user</module>
+        <module>community_sms</module>
+        <module>community_eureka</module>
+        <module>community_friend</module>
+        <module>community_manager</module>
+        <module>community_front</module>
+
+
     </modules>
     <packaging>pom</packaging>
     <name>community_parent</name>
@@ -28,6 +40,31 @@
 
         <java.version>11</java.version>
     </properties>
+
+    <dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>Greenwich.SR2</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
 
     <dependencies>
         <dependency>

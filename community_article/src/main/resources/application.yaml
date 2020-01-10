@@ -1,0 +1,24 @@
+server:
+  port: 9004
+spring:
+  application:
+    name: community-article
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.29.170:3306/community_article
+    username: root
+    password: root
+  jpa:
+    database: mysql
+    show-sql: true
+  main:
+    allow-bean-definition-overriding: true
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.29.125:6868/eureka
+  instance:
+    prefer-ip-address: true

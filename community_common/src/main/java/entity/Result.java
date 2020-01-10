@@ -3,7 +3,6 @@ package entity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -36,5 +35,11 @@ public class Result<T> {
 
     public static <T> Result<T> error(StatusCode code, String message) {
         return new Result<T>(code.getCode(), false, message, null);
+    }
+    public static <T> Result<T> error(StatusCode code) {
+        return new Result<T>(code.getCode(), false, code.getMessage(), null);
+    }
+    public static <T> Result<T> error( String message) {
+        return new Result<T>(StatusCode.ERROR.getCode(), false, message, null);
     }
 }

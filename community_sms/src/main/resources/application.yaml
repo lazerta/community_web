@@ -1,0 +1,21 @@
+twilio:
+  account_sid: AC2a2c57c035db4f8a5e4a08a19a059735
+  auth_token: a0bb77187b98da8cf349f32b50153cf8
+  trial_number: 18638081904
+
+host: 192.168.29.170
+server:
+  port: 9009
+
+
+spring:
+  application:
+    name: community-sms
+  rabbitmq:
+    host: ${host}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.29.125:6868/eureka
+  instance:
+    prefer-ip-address: true

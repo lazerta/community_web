@@ -1,0 +1,35 @@
+host: 192.168.29.170
+
+jwt:
+  config:
+    secret_key: key
+    duration: 5
+server:
+  port: 9008
+spring:
+  application:
+    name: community-user
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${host}/community_user
+    username: root
+    password: root
+  jpa:
+    database: mysql
+    show-sql: true
+    open-in-view: false
+
+  redis:
+    host: ${host}
+  rabbitmq:
+    host: ${host}
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.29.125:6868/eureka
+  instance:
+    prefer-ip-address: true

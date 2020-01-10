@@ -1,15 +1,35 @@
+host: 192.168.29.170
+
+
 server:
-  port: 9001
+  port: 9002
 spring:
   application:
-    name: community-recruit
+    name: community-qa
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.29.178:3306/community_recruit
+    url: jdbc:mysql://192.168.29.170:3306/community_question_answer
     username: root
     password: root
   jpa:
     database: mysql
     show-sql: true
+  main:
+    allow-bean-definition-overriding: true
 
+jwt:
+  config:
+    secret_key: key
+    duration: 5
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.29.125:6868/eureka
+  instance:
+    prefer-ip-address: true
+
+feign:
+ hystrix:
+  enabled: true

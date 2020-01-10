@@ -55,7 +55,7 @@ public class LabelService {
     }
 
 
-    public Page<Label> findSearchWithPage(Label label, int page, int size) {
+    public Page<Label> findSearchWithPage( Label label, int page, int size) {
         ExampleMatcher criteria = getSearchCriteria(label);
         Pageable pageable = PageRequest.of(page-1, size);
         return repository.findAll(Example.of(label, criteria), pageable);

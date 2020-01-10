@@ -16,5 +16,4 @@ public class PageResult<T> {
         return new PageResult<>(total, rows);
     }
 
-
 }
